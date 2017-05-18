@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ScreenSwitcher from 'react-native-device-screen-switcher';
 import { AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker } from 'react-native';
 class Calculator extends Component {
   constructor(props) {
@@ -9,9 +10,10 @@ class Calculator extends Component {
 
   render() {
     return (
+        <ScreenSwitcher>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-      <View>
+      <View style={{flex: 1}}>
       <View style = {styles.card}>
 
       <TextInput
@@ -33,11 +35,11 @@ class Calculator extends Component {
       />
       <Text style={styles.title}>%</Text>
       </View>
+      
       <View style = {styles.card}>
       <Picker
       selectedValue={this.state.ppl}
       onValueChange={(ppl) => this.setState({ppl})}>
-
       <Picker.Item label="1" value="1" />
       <Picker.Item label="2" value="2" />
       <Picker.Item label="3" value="3" />
@@ -141,8 +143,9 @@ class Calculator extends Component {
       <Text style={styles.title}>Number of people:</Text>
       </View>
       <View style = {styles.card}>
-      <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.people).join(' ')}</Text><Text style={styles.title}>Per Person</Text></View>
-      </View></TouchableWithoutFeedback>
+      <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.title}>Per Person</Text></View>
+      </View>
+    </TouchableWithoutFeedback></ScreenSwitcher>
     );
   }
 }
@@ -151,19 +154,22 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 18,
-    padding: 12,
-    textAlign:'right', color: 'white'
+    padding: 18,
+      flex: 1,
+    textAlign:'right', 
+      color: 'white'
   },
   input: {
     color: 'white',
     padding: 18,
-    flex:3
+      flex:2 
   },
   card: {
     backgroundColor: '#007aff',
     borderColor: 'white',
     shadowColor:'black',
-    margin: 36
+    margin: 12,
+      flex: 3,
   }
 });
 
