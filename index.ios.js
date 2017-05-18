@@ -13,7 +13,7 @@ class Calculator extends Component {
         <ScreenSwitcher>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style = {styles.card}>
 
       <TextInput
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
     shadowColor:'black',
     margin: 12,
       flex: 3,
+      borderRadius:6
   }
 });
 
