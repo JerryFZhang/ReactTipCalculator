@@ -33,9 +33,8 @@ render() {
     onChangeText={(amount) => this.setState({amount})}
     />
     <Text style={styles.text}>After Tax</Text>
-</View>
+    </View>
     <View style={styles.slide2}>
-
     <TextInput
     style={styles.input}
     placeholder="Tip Percentage"
@@ -52,7 +51,7 @@ render() {
     starColor={'white'}
     emptyStarColor={'white'}
 
-    /><Text style={styles.text}>%</Text>
+    /><Text style={styles.text}> % </Text>
     </View></View>
     <View style={styles.slide3}>
     <View style = {styles.pickercard}>
@@ -167,26 +166,16 @@ render() {
     </Swiper>
     </TouchableWithoutFeedback></ScreenSwitcher>
   );
+
 }
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    padding: 18,
-    textAlign:'right',
-    color: 'white'
-  },
   input: {
     color: 'white',
     padding: 18,
     fontSize: 30,
-    textAlign:'center',
-  },
-  card: {
-    backgroundColor: '#007aff',
-    margin: 9,
+    textAlign:'center'
   },
   pickercard: {
     height: 270
