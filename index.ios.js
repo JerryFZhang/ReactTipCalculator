@@ -12,23 +12,23 @@ class Calculator extends Component {
     return (
         <ScreenSwitcher>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
       <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style = {styles.card}>
-
-      <TextInput
+        <TextInput
       style={styles.input}
       placeholder="Enter Bill Amount"
       placeholderTextColor="#dddddd"
       keyboardType = 'numeric'
       onChangeText={(amount) => this.setState({amount})}
-      /><Text style={styles.title}>After Tax</Text>
+      />
+        <Text style={styles.title}>After Tax</Text>
       </View>
+        
       <View style = {styles.card}>
 
       <TextInput
       style={styles.input}
-      placeholder="Enter Tip Percentage"
+      placeholder="Tip Percentage"
       placeholderTextColor="#dddddd"
       keyboardType = 'numeric'
       onChangeText={(percentage) => this.setState({percentage})}
@@ -36,7 +36,7 @@ class Calculator extends Component {
       <Text style={styles.title}>%</Text>
       </View>
       
-      <View style = {styles.card}>
+      <View style = {styles.pickercard}>
       <Picker
       selectedValue={this.state.ppl}
       onValueChange={(ppl) => this.setState({ppl})}>
@@ -162,16 +162,22 @@ const styles = StyleSheet.create({
   input: {
     color: 'white',
     padding: 18,
-      flex:2 
+      fontSize: 24,
+      flex:1 
   },
   card: {
     backgroundColor: '#007aff',
-    borderColor: 'white',
-    shadowColor:'black',
     margin: 12,
-      flex: 3,
-      borderRadius:6
-  }
+      flex: 2
+  },
+     pickercard: {
+    backgroundColor: '#007aff',
+    margin: 12,
+      height: 280
+  },picker:{
+    color:'white'
+}
+
 });
 
 AppRegistry.registerComponent('cal', () => Calculator);
