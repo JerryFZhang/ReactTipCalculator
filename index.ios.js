@@ -8,7 +8,7 @@ class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {text: '',
-    starCount: 3
+    starCount: 3, amount:10, percentage:15
   };
 }
 onStarRatingPress(rating) {
@@ -25,28 +25,24 @@ render() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <Swiper style={styles.wrapper} showsButtons={true}>
     <View style={styles.slide1}>
-    <View style={{flex: 1, backgroundColor: 'white'}}>
-    <View style = {styles.card}>
     <TextInput
     style={styles.input}
     placeholder="Enter Bill Amount"
-    placeholderTextColor="#dddddd"
+    placeholderTextColor="#eeeeee"
     keyboardType = 'numeric'
     onChangeText={(amount) => this.setState({amount})}
     />
-    <Text style={styles.title}>After Tax</Text>
-    </View>
-    </View></View>
+    <Text style={styles.text}>After Tax</Text>
+</View>
     <View style={styles.slide2}>
-    <View style = {styles.starcard}>
+
     <TextInput
     style={styles.input}
     placeholder="Tip Percentage"
-    placeholderTextColor="#dddddd"
+    placeholderTextColor="#eeeeee"
     keyboardType = 'numeric'
     onChangeText={(percentage) => this.setState({percentage})}
     />
-    <Text style={styles.title}>%</Text>
     <View style = {{padding:12}}>
     <StarRating
     disabled={false}
@@ -56,9 +52,7 @@ render() {
     starColor={'white'}
     emptyStarColor={'white'}
 
-    />
-
-    </View>
+    /><Text style={styles.text}>%</Text>
     </View></View>
     <View style={styles.slide3}>
     <View style = {styles.pickercard}>
@@ -165,13 +159,11 @@ render() {
     <Picker.Item label="98" value="98" />
     <Picker.Item label="99" value="99" />
     </Picker>
-    <Text style={styles.title}>Number of people</Text>
+    <Text style={styles.text}>Number of people</Text>
     </View>
     </View>
     <View style={styles.slide3}>
-    <View style = {styles.card}>
-    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.title}>Per Person</Text></View>
-    </View>
+    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.text}>Per Person</Text></View>
     </Swiper>
     </TouchableWithoutFeedback></ScreenSwitcher>
   );
@@ -183,31 +175,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     padding: 18,
-    flex: 1,
     textAlign:'right',
     color: 'white'
   },
   input: {
     color: 'white',
     padding: 18,
-    fontSize: 18,
-    flex:1
+    fontSize: 30,
+    textAlign:'center',
   },
   card: {
     backgroundColor: '#007aff',
     margin: 9,
-    flex: 3
   },
   pickercard: {
-    backgroundColor: '#007aff',
-    margin: 12,
     height: 270
-  },picker:{
-    color:'white'
-  },starcard: {
-    backgroundColor: '#007aff',
-    margin: 12,
-    height: 144
   },
   wrapper: {
   },
