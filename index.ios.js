@@ -8,7 +8,7 @@ class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {text: '',
-    starCount: 3, amount:10, percentage:15
+    starCount: 3
   };
 }
 onStarRatingPress(rating) {
@@ -21,9 +21,8 @@ onStarRatingPress(rating) {
 
 render() {
   return (
-    <ScreenSwitcher>
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <Swiper style={styles.wrapper} showsButtons={true}>
+    <Swiper style={styles.wrapper} showsButtons={false} horizontal={false}>
     <View style={styles.slide1}>
     <TextInput
     style={styles.input}
@@ -168,11 +167,11 @@ render() {
     <Text style={styles.text}>Number of people</Text>
     </View>
     </View>
-    <View style={styles.slide3}>
+    <View style={styles.slide4}>
     <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.text}>Per Person</Text></View>
     </Swiper>
-    </TouchableWithoutFeedback></ScreenSwitcher>
-  );
+    </TouchableWithoutFeedback>
+    );
 
 }
 }
@@ -204,11 +203,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#92BBD9',
   },
+    slide4: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#222222',
+  },
   text: {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-  }
+  },
+    wrapper: {
+  },
 
 
 });
