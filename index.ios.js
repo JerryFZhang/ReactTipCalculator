@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import ScreenSwitcher from 'react-native-device-screen-switcher';
+import StarRating from 'react-native-star-rating';
 import { AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker } from 'react-native';
 class Calculator extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = {text: '',
+      starCount: 3
+    };
+  }
+onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating,
+        percentage: rating *5
+    });
   }
 
 
@@ -12,6 +21,7 @@ class Calculator extends Component {
     return (
         <ScreenSwitcher>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+         
       <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style = {styles.card}>
         <TextInput
@@ -24,7 +34,7 @@ class Calculator extends Component {
         <Text style={styles.title}>After Tax</Text>
       </View>
         
-      <View style = {styles.card}>
+      <View style = {styles.starcard}>
 
       <TextInput
       style={styles.input}
@@ -33,7 +43,20 @@ class Calculator extends Component {
       keyboardType = 'numeric'
       onChangeText={(percentage) => this.setState({percentage})}
       />
+      
       <Text style={styles.title}>%</Text>
+      <View style = {{padding:12}}>
+      <StarRating
+        disabled={false}
+        maxStars={5}
+        rating={this.state.starCount}
+        selectedStar={(rating) => this.onStarRatingPress(rating)}
+        starColor={'white'}
+        emptyStarColor={'white'}
+
+      />
+      
+      </View>
       </View>
       
       <View style = {styles.pickercard}>
@@ -162,21 +185,25 @@ const styles = StyleSheet.create({
   input: {
     color: 'white',
     padding: 18,
-      fontSize: 24,
+      fontSize: 18,
       flex:1 
   },
   card: {
     backgroundColor: '#007aff',
-    margin: 12,
-      flex: 2
+    margin: 9,
+      flex: 3
   },
      pickercard: {
     backgroundColor: '#007aff',
     margin: 12,
-      height: 280
+      height: 270
   },picker:{
     color:'white'
-}
+},starcard: {
+   backgroundColor: '#007aff',
+    margin: 12,
+      height: 144
+  },
 
 });
 
