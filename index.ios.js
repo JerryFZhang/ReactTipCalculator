@@ -36,9 +36,9 @@ render() {
     />
     <Text style={styles.title}>After Tax</Text>
     </View>
-
+    </View></View>
+    <View style={styles.slide2}>
     <View style = {styles.starcard}>
-
     <TextInput
     style={styles.input}
     placeholder="Tip Percentage"
@@ -46,7 +46,6 @@ render() {
     keyboardType = 'numeric'
     onChangeText={(percentage) => this.setState({percentage})}
     />
-
     <Text style={styles.title}>%</Text>
     <View style = {{padding:12}}>
     <StarRating
@@ -60,8 +59,8 @@ render() {
     />
 
     </View>
-    </View>
-
+    </View></View>
+    <View style={styles.slide3}>
     <View style = {styles.pickercard}>
     <Picker
     selectedValue={this.state.ppl}
@@ -168,14 +167,10 @@ render() {
     </Picker>
     <Text style={styles.title}>Number of people</Text>
     </View>
-    <View style = {styles.card}>
-    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.title}>Per Person</Text></View>
-    </View></View>
-    <View style={styles.slide2}>
-    <Text style={styles.text}>Beautiful</Text>
     </View>
     <View style={styles.slide3}>
-    <Text style={styles.text}>And simple</Text>
+    <View style = {styles.card}>
+    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.title}>Per Person</Text></View>
     </View>
     </Swiper>
     </TouchableWithoutFeedback></ScreenSwitcher>
