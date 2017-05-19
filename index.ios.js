@@ -51,10 +51,17 @@ render() {
     starColor={'white'}
     emptyStarColor={'white'}
 
-    /><Text style={styles.text}> % </Text>
+    /><Text style={styles.text}>Enter or Select % </Text>
     </View></View>
     <View style={styles.slide3}>
-    <View style = {styles.pickercard}>
+    <TextInput
+    style={styles.input}
+    placeholder="Enter or Select"
+    placeholderTextColor="#eeeeee"
+    keyboardType = 'numeric'
+    onChangeText={(ppl) => this.setState({ppl})}
+    />
+    <View>
     <Picker
     selectedValue={this.state.ppl}
     onValueChange={(ppl) => this.setState({ppl})}>
@@ -176,9 +183,6 @@ const styles = StyleSheet.create({
     padding: 18,
     fontSize: 30,
     textAlign:'center'
-  },
-  pickercard: {
-    height: 270
   },
   wrapper: {
   },
