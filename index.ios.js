@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ScreenSwitcher from 'react-native-device-screen-switcher';
 import StarRating from 'react-native-star-rating';
 import { AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker } from 'react-native';
+import Swiper from 'react-native-swiper';
+
 class Calculator extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,8 @@ onStarRatingPress(rating) {
     return (
         <ScreenSwitcher>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-         
+          <Swiper style={styles.wrapper} showsButtons={true}>
+        <View style={styles.slide1}>
       <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style = {styles.card}>
         <TextInput
@@ -163,11 +166,18 @@ onStarRatingPress(rating) {
       <Picker.Item label="98" value="98" />
       <Picker.Item label="99" value="99" />
       </Picker>
-      <Text style={styles.title}>Number of people:</Text>
+      <Text style={styles.title}>Number of people</Text>
       </View>
       <View style = {styles.card}>
       <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.title}>Per Person</Text></View>
-      </View>
+      </View></View>
+        <View style={styles.slide2}>
+          <Text style={styles.text}>Beautiful</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text}>And simple</Text>
+        </View>
+      </Swiper>
     </TouchableWithoutFeedback></ScreenSwitcher>
     );
   }
@@ -204,6 +214,32 @@ const styles = StyleSheet.create({
     margin: 12,
       height: 144
   },
+    wrapper: {
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  }
+
 
 });
 
