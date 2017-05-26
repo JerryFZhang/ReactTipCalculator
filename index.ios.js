@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import ScreenSwitcher from 'react-native-device-screen-switcher';
 import StarRating from 'react-native-star-rating';
-import { AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker } from 'react-native';
+import { AppState, AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker } from 'react-native';
 import Swiper from 'react-native-swiper';
+var STORAGE_KEY = '@AsyncStorageExample:key';
 
 class Calculator extends Component {
+    state = {
+    appState: AppState.currentState
+  }
+
   constructor(props) {
     super(props);
     this.state = {text: '',
-    starCount: 3
+    starCount: 3,
+    percentage: 0
   };
 }
 onStarRatingPress(rating) {
   this.setState({
     starCount: rating,
-    percentage: rating *5
+    percentage: 10 + rating *2
   });
 }
 
@@ -23,6 +29,7 @@ render() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <Swiper style={styles.wrapper} showsButtons={false} horizontal={false}>
+      
     <View style={styles.slide1}>
     <TextInput
     style={styles.input}
@@ -49,8 +56,7 @@ render() {
     selectedStar={(rating) => this.onStarRatingPress(rating)}
     starColor={'white'}
     emptyStarColor={'white'}
-
-    /><Text style={styles.text}>Enter or Select % </Text>
+    /><Text style={styles.text}>I would like to give a {this.state.percentage} % tip.</Text>
     </View></View>
     <View style={styles.slide3}>
     <TextInput
@@ -178,6 +184,7 @@ render() {
 
 const styles = StyleSheet.create({
   input: {
+      height:60,
     color: 'white',
     padding: 18,
     fontSize: 30,
@@ -211,7 +218,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: 'bold',
   },
     wrapper: {
