@@ -174,7 +174,25 @@ render() {
     </View>
     </View>
     <View style={styles.slide4}>
-    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl).join(' ')}</Text><Text style={styles.text}>Per Person</Text></View>
+
+        <Text style={styles.text}>Bill Amount</Text>
+                <Text style={styles.input} >{this.state.amount}</Text>
+
+        <Text style={styles.text}>Tip Amount</Text>
+                <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (this.state.percentage/100))/this.state.ppl)}</Text>
+        
+        <Text style={styles.text}>Total Amount</Text>
+        <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100)))}</Text>
+        
+
+        <Text style={styles.text}>Per Person</Text>
+                <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100))/this.state.ppl)}</Text>
+        
+        <Text style={styles.text}>Tip Per Person</Text><Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (this.state.percentage/100))/this.state.ppl)}</Text>
+        </View>
+        <View style={styles.slide5}>
+        </View>
+        
     </Swiper>
     </TouchableWithoutFeedback>
     );
@@ -186,7 +204,6 @@ const styles = StyleSheet.create({
   input: {
       height:60,
     color: 'white',
-    padding: 18,
     fontSize: 30,
     textAlign:'center'
   },
@@ -213,8 +230,16 @@ const styles = StyleSheet.create({
     slide4: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: '#222222',
+    padding: 60
+  },
+    slide5: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: '#222222',
+    padding: 60
   },
   text: {
     color: '#fff',
