@@ -21,7 +21,8 @@ class Calculator extends Component {
     super(props);
     this.state = {text: '',
     starCount: 3,
-    percentage: 0
+    percentage: 0,
+    currency: 0
   };
 }
 onStarRatingPress(rating) {
@@ -186,7 +187,7 @@ render() {
     <Text style={styles.input} >{this.state.amount}</Text>
 
     <Text style={styles.text}>Tip Amount</Text>
-    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (this.state.percentage/100))/this.state.ppl)}</Text>
+    <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (this.state.percentage/100)))}</Text>
 
     <Text style={styles.text}>Total Amount</Text>
     <Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (1 + this.state.percentage/100)))}</Text>
@@ -198,38 +199,21 @@ render() {
     <Text style={styles.text}>Tip Per Person</Text><Text style={styles.input} >{this.state.text.split(' ').map((word) => (this.state.amount * (this.state.percentage/100))/this.state.ppl)}</Text>
     </View>
     <View style={styles.container}>
-    <Button
-    title="Show Dialog"
-    onPress={() => {
-      this.popupDialog.show();
-    }}
-    />
-    <PopupDialog
-    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-    dialogAnimation = { new SlideAnimation({ slideFrom: 'top' })}
-    dialogTitle={<DialogTitle title="Settings" />}
-    actions={[
-      <DialogButton
-      text="Done"
-      onPress={() => {
-        this.popupDialog.dismiss();
-      }}
-      key=""
-      />
-    ]}
-    >
-    <View>
-    <SegmentedControlIOS
+<SegmentedControlIOS
     values={['$', '£', '€']}
-    selectedIndex={this.state.selectedIndex}
+    selectedIndex={this.state.currency}
     onValueChange={(event) => {
       this.setState({currency: this.state.selectedIndex});
-
     }}
     />
-    </View>
-    </PopupDialog>
-    </View>
+    <TextInput
+    style = {{padding: 20}}
+    placeholder="Enter Default %"
+    placeholderTextColor="black"
+    keyboardType = 'numeric'
+    onChangeText={(defaultPercent) => this.setState({defaultPercent})}
+    />
+    </View>  
     </Swiper>
     </TouchableWithoutFeedback>
   );
