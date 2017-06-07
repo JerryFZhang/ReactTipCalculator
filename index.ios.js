@@ -1,8 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
-import ScreenSwitcher from 'react-native-device-screen-switcher';
 import StarRating from 'react-native-star-rating';
-import { AsyncStorage, AppState, AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker, Button,SegmentedControlIOS,TouchableHighlight } from 'react-native';
+import { AsyncStorage, AppState, AppRegistry, Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Keyboard, Picker, Button } from 'react-native';
 import Swiper from 'react-native-swiper';
 var App_State_Object;
 var existance;
@@ -14,29 +13,25 @@ class Calculator extends Component {
     currency: "$"
   };
 
-  //  componentDidMount() {
-  //    this._loadInitialState().done();
-  //  }
-
-
   constructor(props) {
     super(props);
-   this.state = {
-        text: '',
-        starCount: 3,
-        percentage: 0,
-        currency: "$"
-      };
-      AsyncStorage.getItem("percentage").then((value) => {
-            this.setState({"percentage": value});
-          console.log(value);
-        }).done();
-      AsyncStorage.getItem("currency").then((value) => {
-            this.setState({"currency": value});
-          console.log(value);
-        }).done();
+    this.state = {
+      text: '',
+      starCount: 3,
+      percentage: 0,
+      currency: "$"
+    };
+    AsyncStorage.getItem("percentage").then((value) => {
+      // Todo: Try catch
+      this.setState({"percentage": value});
+      console.log(value);
+    }).done();
+    AsyncStorage.getItem("currency").then((value) => {
+      this.setState({"currency": value});
+      console.log(value);
+    }).done();
 
-};
+  };
 
 
   onStarRatingPress(rating) {
@@ -44,15 +39,13 @@ class Calculator extends Component {
       starCount: rating,
       percentage: 10 + rating *2
     });
-      console.log("***rating****");
   }
- 
+  
 
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Swiper style={styles.wrapper} showsButtons={false} horizontal={false}>
-
       <View style={styles.slide1}>
       <TextInput
       style={styles.input}
@@ -79,8 +72,10 @@ class Calculator extends Component {
       selectedStar={(rating) => this.onStarRatingPress(rating)}
       starColor={'black'}
       emptyStarColor={'#666666'}
-      /><Text style={styles.text}>I would like to give a {this.state.percentage} % tip.</Text>
-      </View></View>
+      />
+      <Text style={styles.text}>I would like to give a {this.state.percentage} percent tip.</Text>
+      </View>
+      </View>
       <View style={styles.slide3}>
       <TextInput
       style={styles.input}
@@ -213,11 +208,11 @@ class Calculator extends Component {
       <Text style={styles.text}>Settings</Text>
       <TextInput
       style={styles.input2}
-      placeholder="Enter Default % Here"
+      placeholder="Enter Default % "
       placeholderTextColor="#666666"
       keyboardType = 'numeric'
       onChangeText={
-       (text) => this.saveData(text)
+        (text) => this.saveData(text)
       }
       />
       <View>
@@ -235,18 +230,18 @@ class Calculator extends Component {
       </TouchableWithoutFeedback>
     );
   }
-   saveData(value) {
-       this.state.percentage = value;
-        AsyncStorage.setItem("percentage", value);
-        this.setState({"percentage": value});
-       console.log(value);
-    }
-saveCurr(value) {
-       this.state.percentage = value;
-        AsyncStorage.setItem("currency", value);
-        this.setState({"currency": value});
-       console.log(value);
-    }
+  saveData(value) {
+    this.state.percentage = value;
+    AsyncStorage.setItem("percentage", value);
+    this.setState({"percentage": value});
+    console.log(value);
+  }
+  saveCurr(value) {
+    this.state.percentage = value;
+    AsyncStorage.setItem("currency", value);
+    this.setState({"currency": value});
+    console.log(value);
+  }
 };
 
 
